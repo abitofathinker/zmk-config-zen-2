@@ -49,17 +49,10 @@
                 nav_layer {
                         display-name = "NAVIGA";
                         bindings = <
-<<<<<<< HEAD
    &kp ESC    &kp TAB     &kp N2       &kp N3       &kp N4       &kp sys_reset  &kp N6   &kp N7   &kp N8 &kp N9    &kp N0     &kp DELETE
    &sk LCTRL  &kp N0      &kp N4       &tog NUMPAD  &kp DOT      &kp DOT        &kp LEFT &kp DOWN &kp UP &kp RIGHT &caps_word &kp INS
    &sk LSHFT  &kp K_CMENU &kp N1       &kp N2       &kp N3       &sk LALT       &trans   &trans   &trans &trans    &trans     &sk RSHFT
                                        &kp LGUI     &trans       &kp SPACE      &kp RET  &mo SUPER   &kp RALT
-=======
-   &kp ESC    &kp TAB     &kp N2       &kp N3       &kp N4       &RST_COLD    &kp N6   &kp N7   &kp N8 &kp N9    &kp N0     &kp DELETE
-   &sk LCTRL  &kp N0      &kp N4       &tog NUMPAD  &kp DOT      &kp DOT      &kp LEFT &kp DOWN &kp UP &kp RIGHT &caps_word &kp INS
-   &sk LSHFT  &kp K_CMENU &kp N1       &kp N2       &kp N3       &sk LALT     &trans   &trans   &trans &trans    &trans     &sk RSHFT
-                                       &kp LGUI     &trans       &kp SPACE    &kp RET  &mo SUPER   &kp RALT
->>>>>>> 2ea6d1b4b58224c325c3139520e7a2053f08419f
                         >;
                 };
                 number_layer {
@@ -83,11 +76,7 @@
                 config_layer {
                         display-name = "CONFIG";
                         bindings = <
-<<<<<<< HEAD
    &tog CONFIG    &kp EXCL     &kp AT       &kp HASH     &kp DOLLAR   &sys_reset &kp F6   &kp F7    &kp F8    &kp F9  &kp F10    &sys_reset
-=======
-   &tog CONFIG    &kp EXCL     &kp AT       &kp HASH     &kp DOLLAR   &RST_COLD     &kp F6   &kp F7    &kp F8    &kp F9  &kp F10    &RST_COLD
->>>>>>> 2ea6d1b4b58224c325c3139520e7a2053f08419f
    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp HOME &kp PG_DN &kp PG_UP &kp END &kp CAPS      &kp F12
    &tog HOMERO       &trans       &trans       &trans       &RST_WARM               &kp F1   &kp F2    &kp F3    &kp F4  &kp F5     &RST_WARM
                                   &kp LGUI     &trans       &kp SPACE            &kp RET  &trans   &kp RALT
