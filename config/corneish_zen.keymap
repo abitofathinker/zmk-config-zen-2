@@ -2,60 +2,85 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 
+#define QWERTY 0
+#define HOMERO 1
+#define NUMPAD 2
+#define NAVIGA 3
+#define NUMBER 4
+#define SUPER 5
+#define CONFIG 6
 / {
     chosen {
         zmk,physical-layout = &foostan_corne_6col_layout;
         // zmk,physical-layout = &foostan_corne_5col_layout;
     };
 };
-
 / {
-    keymap {
-        compatible = "zmk,keymap";
+        keymap {
+                compatible = "zmk,keymap";
 
-        default_layer {
-            display-name = "QWERTY";
-// --------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
-            bindings = <
-&kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-&kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-&kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-               &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-            >;
+                default_layer {
+                        display-name = "QWERTY";
+                        bindings = <
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp T        &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &sk LCTRL &kp A &kp S &kp D &kp F &kp G        &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &sk LSHFT &kp Z &kp X &kp C &kp V &kp B        &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sk RSHFT
+                  &kp LGUI &mo NAVIGA &kp SPACE   &kp RET &mo NUMBER &kp RALT
+                        >;
+                };
+                homerowmods_layer {
+                        display-name = "HOMERO";
+                        bindings = <
+   &kp TAB   &kp Q      &kp W      &kp E       &kp R          &kp T        &kp Y   &kp U           &kp I       &kp O        &kp P         &kp BSPC
+   &kp LCTRL &mt LGUI A &mt LALT S &mt LCTRL D &mt LSHFT F    &kp G        &kp H   &mt RSHFT J     &mt RCTRL K &mt RALT L   &mt RGUI SEMI &kp SQT
+   &kp LSHFT &kp Z      &kp X      &kp C       &kp V          &kp B        &kp N   &kp M           &kp COMMA   &kp DOT      &kp FSLH      &kp RSHFT
+                                   &kp ESC     &lt NAVIGA TAB &kp SPACE    &kp RET &lt NUMBER BSPC &kp DELETE
+                        >;
+                };
+                numpad_layer {
+                        display-name = "NUMPAD";
+                        bindings = <
+   &kp TAB   &kp KP_SLASH    &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS    &trans    &trans    &trans    &trans    &trans     &trans
+   &kp EQUAL &kp KP_N0       &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_PLUS     &trans    &trans    &trans    &trans    &trans     &trans
+   &kp LSHFT &kp DOT         &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_ASTERISK &trans    &trans    &trans    &trans    &trans     &trans
+                                    &kp ENTER &mo NAVIGA   &kp SPC         &trans    &trans    &trans
+                        >;
+                };
+                nav_layer {
+                        display-name = "NAVIGA";
+                        bindings = <
+   &kp ESC    &kp TAB     &kp N2       &kp N3       &kp N4       &kp COMMA    &kp N6   &kp N7   &kp N8 &kp N9    &kp N0     &kp DELETE
+   &sk LCTRL  &kp N0      &kp N4       &tog NUMPAD  &kp DOT      &kp DOT      &kp LEFT &kp DOWN &kp UP &kp RIGHT &caps_word &kp INS
+   &sk LSHFT  &kp K_CMENU &kp N1       &kp N2       &kp N3       &sk LALT     &trans   &trans   &trans &trans    &trans     &sk RSHFT
+                                       &kp LGUI     &trans       &kp SPACE    &kp RET  &mo SUPER   &kp RALT
+                        >;
+                };
+                number_layer {
+                        display-name = "NUMBER";
+                        bindings = <
+   &kp  ESC  &kp EXCL &kp N7 &kp N8   &kp N9   &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
+   &sk LCTRL &kp N0   &kp N4 &kp N5   &kp N6   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
+   &sk LSHFT &trans   &kp N1 &kp N2   &kp N3   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
+                             &kp LGUI &mo SUPER &kp SPACE  &kp RET   &trans    &kp RALT
+                        >;
+                };
+                super_layer {
+                        display-name = "SUPER";
+                        bindings = <
+   &tog CONFIG &kp EXCL     &kp AT       &kp HASH     &kp DOLLAR  &kp PERCENT    &kp F6   &kp F7    &kp F8    &kp F9  &kp F10 &kp F11
+   &trans      &trans       &trans       &trans       &trans      &trans         &kp HOME &kp PG_DN &kp PG_UP &kp END &kp CAPS   &kp F12
+   &sk LSHFT   &kp KP_NLCK  &SLCK        &trans       &trans      &trans         &kp F1   &kp F2    &kp F3    &kp F4  &kp F5  &kp BREAK
+                                         &kp LGUI     &trans      &kp SPACE      &kp RET  &trans    &kp RALT
+                        >;
+                };
+                config_layer {
+                        display-name = "CONFIG";
+                        bindings = <
+   &tog CONFIG    &kp EXCL     &kp AT       &kp HASH     &kp DOLLAR   &reset     &kp F6   &kp F7    &kp F8    &kp F9  &kp F10    &reset
+   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp HOME &kp PG_DN &kp PG_UP &kp END &kp CAPS      &kp F12
+   &tog HOMERO       &trans       &trans       &trans       &trans               &kp F1   &kp F2    &kp F3    &kp F4  &kp F5     &tog CONFIG
+                                  &kp LGUI     &trans       &kp SPACE            &kp RET  &trans   &kp RALT
+                        >;
+                };
         };
-
-        lower_layer {
-            display-name = "NUMBER";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |Studio|
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-            bindings = <
-&kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &studio_unlock
-&kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                     &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
-            >;
-        };
-
-        raise_layer {
-            display-name = "SYMBOL";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-            bindings = <
-&kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
-&kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
-&kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                          &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
-            >;
-        };
-    };
 };
